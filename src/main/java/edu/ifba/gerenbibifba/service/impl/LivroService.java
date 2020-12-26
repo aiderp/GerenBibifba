@@ -1,13 +1,10 @@
 package edu.ifba.gerenbibifba.service.impl;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import com.sun.el.stream.Optional;
-
 import edu.ifba.gerenbibifba.model.Livro;
 import edu.ifba.gerenbibifba.repository.ILivrosRepository;
 import edu.ifba.gerenbibifba.service.ILivrosService;
@@ -32,19 +29,15 @@ public class LivroService implements ILivrosService {
 
 	@Override
 	public Livro find(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	Optional<Livro> l = repository.findById(id);
+		return l.isPresent() ? l.get() : null;
 	}
 
 	@Override
-	public List<Livro> fidALL() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Livro> findALL() {
+		return repository. findAll(Sort.by("cadastro").descending());
 	}
-	
-	
 
-	
 	
 	}
 

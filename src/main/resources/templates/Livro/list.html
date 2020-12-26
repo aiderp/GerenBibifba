@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headerfiles (title = 'Listagem de Livros')">
+</head>
+<body>
+
+	<header th:replace="fragments/general.html :: header">
+	</header>
+
+	<div class="container my-3">
+		
+		<h1 class="display-4 text-center my-3">Lista de Livros</h1>
+		<table class="table table-striped text-center">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Título</th>
+					<th scope="col">Descriçãoo</th>
+					<th scope="col">Referência</th>
+					<th scope="col">Cadastro</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="livro    : ${livro}">
+					<th scope="row" th:text="${livro.id}"></th>
+					<th th:text="${livro.titulo}"></th>
+					<th th:text="${livro.descricao}"></th>
+					<th th:text="${livro.referencia}"></th>
+               <th th:text="${#dates.format(livro.cadastro, 'dd/MM/yyyy')}"></th>
+					
+					
+					<th>
+						<a class="btn btn-outline-primary"
+							th:href="@{/Livro/details/{id}(id = ${livro.id})}">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</a>
+						<a class="btn btn-outline-success"
+							th:href="@{/Livro/save/{id}(id = ${livro.id})}">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+						<a class="btn btn-outline-danger"
+							th:href="@{/Livro/delete/{id}(id = ${livro.id})}">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+						</a>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+
+	<footer th:replace="fragments/general.html :: footer">
+	</footer>
+
+</body>
+</html>

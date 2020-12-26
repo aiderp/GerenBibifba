@@ -12,7 +12,10 @@ public interface ILivrosService {
 	
 	Livro find(Integer id);
 	
-	List <Livro>fidALL();
+	
+	List <Livro>findALL();
+
+	
 	
 	
 	
